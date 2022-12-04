@@ -4,10 +4,11 @@ import Footer from './components/Footer/Footer';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Product from './pages/Product';
+import './App.scss';
 
 const Layout = () => {
   return (
-    <div>
+    <div className="app">
       <Navbar />
       <Outlet />
       <Footer />
