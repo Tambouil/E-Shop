@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './pages/Home';
-import Products from './pages/Products';
+import Products from './pages/Products/Products';
 import Product from './pages/Product';
 import './App.scss';
 
