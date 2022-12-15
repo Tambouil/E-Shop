@@ -39,8 +39,8 @@ const Footer = () => {
       </div>
       <div className="bottom">
         <div className="left">
-          <span className="logo">Lamastore</span>
-          <span className="copyright">© Copyright 2023. All Rights Reserved</span>
+          <span className="logo">E-SHOP</span>
+          <span className="copyright">© Copyright {new Date().getFullYear()}</span>
         </div>
         <div className="right">
           <img src="/img/payment.png" alt="payment methods" />
