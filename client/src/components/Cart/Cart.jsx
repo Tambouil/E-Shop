@@ -35,6 +35,12 @@ const Cart = () => {
           <AiFillDelete className="delete" />
         </div>
       ))}
+      <div className="total">
+        <span>SUBTOTAL</span>
+        <span>$ 80</span>
+      </div>
+      <button>PROCEED TO CHECKOUT</button>
+      <span className="reset">Reset Cart</span>
     </div>
   );
 };
