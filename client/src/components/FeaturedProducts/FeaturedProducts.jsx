@@ -1,45 +1,9 @@
 import Card from '../Card/Card';
+import useFetch from '../../hooks/useFetch';
 import './FeaturedProducts.scss';
 
 const FeaturedProducts = ({ type }) => {
-  const data = [
-    {
-      id: 1,
-      img: 'https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      img2: 'https://images.pexels.com/photos/949670/pexels-photo-949670.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      title: 'Product 1',
-      isNew: true,
-      oldPrice: 100,
-      price: 50,
-    },
-    {
-      id: 2,
-      img: 'https://images.pexels.com/photos/837140/pexels-photo-837140.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      img2: 'https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      title: 'Product 2',
-      isNew: true,
-      oldPrice: 100,
-      price: 50,
-    },
-    {
-      id: 3,
-      img: 'https://images.pexels.com/photos/949670/pexels-photo-949670.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      img2: 'https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      title: 'Product 3',
-      isNew: false,
-      oldPrice: 100,
-      price: 50,
-    },
-    {
-      id: 4,
-      img: 'https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      img2: 'https://images.pexels.com/photos/949670/pexels-photo-949670.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      title: 'Product 4',
-      isNew: false,
-      oldPrice: 100,
-      price: 50,
-    },
-  ];
+  const { data, loading, error } = useFetch(`/products?populate=*&[filters][type][$eq]=${type}`);
 
   return (
     <div className="featuredProducts">
@@ -53,9 +17,11 @@ const FeaturedProducts = ({ type }) => {
         </p>
       </div>
       <div className="bottom">
-        {data.map((item) => (
-          <Card key={item.id} item={item} />
-        ))}
+        {error
+          ? 'Something went wrong!'
+          : loading
+          ? 'loading'
+          : data?.map((item) => <Card item={item} key={item.id} />)}
       </div>
     </div>
   );
