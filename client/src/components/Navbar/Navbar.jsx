@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineDown, AiOutlineSearch, AiOutlineUser, AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
+import Cart from '../Cart/Cart';
 import './Navbar.scss';
 
 const Navbar = () => {
