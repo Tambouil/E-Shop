@@ -1,6 +1,8 @@
 import { AiFillDelete } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, resetCart } from '../../store/cartReducer';
+import { makeRequest } from '../../hooks/makeRequest';
+import { loadStripe } from '@stripe/stripe-js';
 import './Cart.scss';
 
 const Cart = () => {
@@ -13,6 +15,23 @@ const Cart = () => {
       total += item.quantity * item.price;
     });
     return total.toFixed(2);
+  };
+
+  const stripePromise = loadStripe(
+    'pk_test_51MFfWjA50QsAbD8Z3kAQOq69FnpNLmUGss8yZYjwYWmGL0TfnBCfPHTuB2xQClM0ileLfDo1PoRL6SMVresKX5lB00krpTd0lF'
+  );
+  const handlePayment = async () => {
+    try {
+      const stripe = await stripePromise;
+      const res = await makeRequest.post('/orders', {
+        products,
+      });
+      await stripe.redirectToCheckout({
+        sessionId: res.data.stripeSession.id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -35,7 +54,7 @@ const Cart = () => {
         <span>SUBTOTAL</span>
         <span>${totalPrice()}</span>
       </div>
-      <button>PROCEED TO CHECKOUT</button>
+      <button onClick={handlePayment}>PROCEED TO CHECKOUT</button>
       <span className="reset" onClick={() => dispatch(resetCart())}>
         Reset Cart
       </span>

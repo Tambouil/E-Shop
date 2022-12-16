@@ -5,12 +5,14 @@ specifiers:
   '@strapi/plugin-users-permissions': 4.5.4
   '@strapi/strapi': 4.5.4
   better-sqlite3: 7.4.6
+  stripe: ^11.4.0
 
 dependencies:
   '@strapi/plugin-i18n': 4.5.4
   '@strapi/plugin-users-permissions': 4.5.4
   '@strapi/strapi': 4.5.4_better-sqlite3@7.4.6
   better-sqlite3: 7.4.6
+  stripe: 11.4.0
 
 packages:
 
@@ -3973,7 +3975,7 @@ packages:
     resolution: {integrity: sha512-sX/LQ7LqUhgyaxzbe7IqwPeTr2yfpfUIQ/dgpKo6ZI4y4lpQA0YxAomWIY+7I7rHWcG02PG+OuPREzMW/5tszQ==}
     dependencies:
       inflation: 2.0.0
-      qs: 6.10.1
+      qs: 6.11.0
       raw-body: 2.5.1
       type-is: 1.6.18
     dev: false
@@ -6104,7 +6106,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.15.2
+      follow-redirects: 1.15.2_debug@4.3.4
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -9835,6 +9837,14 @@ packages:
   /strip-json-comments/2.0.1:
     resolution: {integrity: sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /stripe/11.4.0:
+    resolution: {integrity: sha512-8feL70RhzN6i8rpUG5SC4ZN5KcPYCUfRYRk/yUcnHG8uLdS26AgKXAEozqddDGUUufRPKYuqs44kPg21/P5JRg==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@types/node': 18.11.15
+      qs: 6.11.0
     dev: false
 
   /style-loader/3.3.1_webpack@5.75.0:
