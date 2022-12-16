@@ -4,6 +4,8 @@ import { MdFavoriteBorder } from 'react-icons/md';
 import { FaBalanceScale } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../store/cartReducer';
 import './Product.scss';
 
 const Product = () => {
@@ -12,6 +14,8 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1);
 
   const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="product">
@@ -48,7 +52,21 @@ const Product = () => {
               {quantity}
               <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
             </div>
-            <button className="add">
+            <button
+              className="add"
+              onClick={() =>
+                dispatch(
+                  addToCart({
+                    id: data.id,
+                    title: data.attributes.title,
+                    desc: data.attributes.desc,
+                    price: data.attributes.price,
+                    img: data.attributes.img.data.attributes.url,
+                    quantity,
+                  })
+                )
+              }
+            >
               <BsCartPlusFill /> ADD TO CART
             </button>
             <div className="links">
