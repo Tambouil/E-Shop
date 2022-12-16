@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import List from '../../components/List/List';
+import useFetch from '../../hooks/useFetch';
 import './Products.scss';
 
 const Products = () => {
@@ -9,21 +10,8 @@ const Products = () => {
   const [sort, setSort] = useState(null);
   const [selectedSubCats, setSelectedSubCats] = useState([]);
 
-  const data = [
-    {
-      id: 1,
-      categorie: 'Shoes',
-    },
-    {
-      id: 2,
-      categorie: 'Skirts',
-    },
-    {
-      id: 3,
-      categorie: 'Coats',
-    },
-  ];
-
+  const { data, loading, error } = useFetch(`/sub-categories?[filters][categories][id][$eq]=${catId}`);
+  console.log(data);
   const handleChange = (e) => {
     const value = e.target.value;
     const isChecked = e.target.checked;
@@ -39,7 +27,7 @@ const Products = () => {
           {data?.map((item) => (
             <div className="inputItem" key={item.id}>
               <input type="checkbox" id={item.id} value={item.id} onChange={handleChange} />
-              <label htmlFor={item.id}>{item.categorie}</label>
+              <label htmlFor={item.id}>{item.attributes.title}</label>
             </div>
           ))}
         </div>
